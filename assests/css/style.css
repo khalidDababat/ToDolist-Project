@@ -1,0 +1,108 @@
+
+*{
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #3C86FF;
+}
+
+.conteaner{
+
+    width: 100%; 
+    min-height: 100vh; 
+
+
+}
+
+.Todo-App{
+    width: 100%;
+    max-width:540px ;
+    background-color: white; 
+    margin: 100px auto 20px;
+    padding: 40px 30px 70px;
+
+    border-radius: 10px;
+}
+
+.Todo-App h2{
+     text-align: center;
+     margin-bottom: 20px;
+}
+.Todo-App  img{
+    width: 30px; 
+    height: 30px;
+    
+}
+
+.input-text{
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between;
+       
+      background-color: rgb(150, 153, 153);
+       padding-left: 20px; 
+       margin-bottom: 25px; 
+       border-radius: 50px;
+
+}
+
+.input-text input{
+    flex: 1;
+    padding: 10px;
+    border: none;
+    outline: none; 
+    background: transparent; 
+    font-weight:bold;
+    font-size: 17px;
+    
+}
+
+.input-text button{
+   border: none;
+   outline: none;
+   padding: 16px 50px; 
+
+   background-color: #3C86FF; 
+   color: white;
+   font-size: 16px; 
+   cursor: pointer; 
+   border-radius: 40px; 
+}
+
+.category-div{ 
+     display: flex;
+     gap: 10px;
+     margin-bottom: 10px;
+}
+
+.category-div button{ 
+    padding: 10px 15px;
+    border-radius: 25px; 
+    cursor: pointer;  
+    background-color: #3C86FF;
+    font-size: 17px; 
+    
+    border: none;
+    outline: none;
+
+
+}
+.input-text button:hover{
+     border: 2px solid black;
+     
+}
+
+.category-div button:hover{
+    border: 2px solid black;
+
+}
+
+.btn-clearall{
+
+    position: absolute; 
+    right: 460px; 
+
+    
+}
