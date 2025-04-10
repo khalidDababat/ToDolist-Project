@@ -41,8 +41,8 @@ body{
       align-items: center; 
       justify-content: space-between;
        
-      background-color: rgb(150, 153, 153);
-       padding-left: 20px; 
+       background-color: rgb(150, 153, 153);
+       padding-left: 30px; 
        margin-bottom: 25px; 
        border-radius: 50px;
 
@@ -89,6 +89,11 @@ body{
 
 
 }
+
+#btn-clearall{
+    background-color: red !important;
+}
+
 .input-text button:hover{
      border: 2px solid black;
      
@@ -106,3 +111,46 @@ body{
 
     
 }
+
+.category-prority p{
+    display: inline; 
+    font-size: 17px; 
+    font-weight: bold;
+}
+.category-prority{
+    padding: 5px;
+    margin-bottom: 10px;
+}
+ 
+.category-prority-btn{
+     display: flex; 
+     gap: 20px;
+     margin-bottom: 10px;
+
+}
+.category-prority-btn button{
+    padding: 10px 15px;
+    background-color: #3C86FF;
+    font-size: 17px; 
+    
+    border: none;
+    outline: none;
+    border-radius: 25px;
+    cursor: pointer;
+    
+
+}
+.category-prority-btn button:hover{
+    border: 2px solid black;
+}
+
+.todo-tasks ul li{
+     
+    list-style: none;
+    padding: 12px 10px 12px 50px; 
+    font-size: 17px; 
+    /* user-select: none;  */
+    cursor: pointer;
+
+}
+
