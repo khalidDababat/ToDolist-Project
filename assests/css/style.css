@@ -142,15 +142,48 @@ body{
 }
 .category-prority-btn button:hover{
     border: 2px solid black;
-}
+} 
 
+/* .small-word{
+  display: inline-block; 
+  font-size: 12px; 
+  position: absolute;
+  right: 770px; 
+  bottom: -80px; 
+  font-weight: lighter;
+} */
+
+
+
+.icon-remove{
+    position: absolute;
+    right: 450px;
+
+}
+.icon-edit{
+    position: absolute;
+    right: 480px;
+
+}
+ 
 .todo-tasks ul li{
      
     list-style: none;
-    padding: 12px 10px 12px 50px; 
+    padding: 12px 10px 12px 5px; 
     font-size: 17px; 
+    font-weight: bold;
     /* user-select: none;  */
     cursor: pointer;
 
 }
 
+.todo-tasks ul li label{
+      font-size: 20px;
+      cursor: pointer;
+      margin-left: 15px;
+
+}
+
+/* .checked{
+    text-decoration: line-through;
+} */

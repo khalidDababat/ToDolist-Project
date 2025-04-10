@@ -20,8 +20,8 @@
         </h2>
 
         <div class="input-text">
-          <input type="text" name="" placeholder="Add a new Task" />
-          <button type="button">Add</button>
+          <input type="text" id="task-input" name="" placeholder="Add a new Task" />
+          <button onclick="AddTask()">Add</button>
         </div>
 
         <div class="category-prority">
@@ -56,16 +56,34 @@
 
 
 
-
         <div class="todo-tasks">
-          <!-- during js Created This List      -->
-          <ul class="conteaner-list">
-            <li class="checked">Task1</li>
-            <li>Task1</li>
-            <li>Task1</li>
-            <li>Task1</li>
-          </ul>
+          <!-- during js Code I Will Created This item List By Dom -->
+          <ul class="conteaner-list" id="conteaner-list">
+
+            
+
+            <!-- <li class="checked">
+                <input type="checkbox" name="" id=""> 
+                <label for=""> Java</label>
+                <span class="icon-remove">&#128465; </span>
+                <span class="icon-edit">&#9998;</span>
+            </li>
+            
+            <li>
+                <input type="checkbox" name="" id=""> 
+                <label for=""> C++</label>
+                <span class="icon-remove">&#128465; </span>
+                <span class="icon-edit">&#9998;</span>
+            </li> 
+            <li><input type="checkbox" name="" id=""> JS</li>
+            <li><input type="checkbox" name="" id=""> Math</li>
+          </ul> -->
+          
+
+
         </div>
+
+        
       </div>
     </div>
 
