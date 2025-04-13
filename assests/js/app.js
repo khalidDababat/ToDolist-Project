@@ -1,5 +1,6 @@
 const taskInput = document.getElementById("task-input");
 const addbtn = document.getElementById("add-btn");
+const ullist = document.getElementById("conteaner-list");
 const listTAsk = [];
 
 function AddTask() {
@@ -12,7 +13,7 @@ function AddTask() {
 }
 
 function createTask(text) {
-  const ullist = document.getElementById("conteaner-list");
+  
   const li = document.createElement("li");
   const inputcheck = document.createElement("input");
   const label = document.createElement("label");
@@ -39,6 +40,7 @@ function createTask(text) {
   for (let i = 0; i < prority.length; i++) {
     if (prority[i].checked == true) {
       prorityTask = prority[i].value;
+      break;
       // console.log("The Prority Task ",  prorityTask);
     }
   }
@@ -48,16 +50,42 @@ function createTask(text) {
     proprity: prorityTask,
     completed: false,
   };
-  listTAsk.push(obj);
 
-  
+  listTAsk.push(obj);
+  SaveTask();
+  //fillContent(); 
 
 }
 
-// const li = document.querySelector('li');
-// li.addEventListener("click",()=>{
-   
-// });
+function SaveTask() {
+  let tasks = JSON.stringify(listTAsk); // For Covert Array(Object )Into String
+  localStorage.setItem("tasks", tasks);
+} 
+
+ function fillContent(){
+  let reterveTask = JSON.parse(localStorage.getItem("tasks")) ||[]; 
+     
+     ullist.innerHTML = ""; // Clear list first
+
+     for(let i=0 ;i<reterveTask.length;i++){
+      // console.log("Hi This",reterveTask[i].task);
+      let content =
+      `
+      <li>
+             <input type="checkbox" name="" id=""> 
+             <label for="">${reterveTask[i].task}</label>
+             <span class="icon-remove">&#128465; </span>
+             <span class="icon-edit">&#9998;</span>
+      
+      </li>
+      
+      `
+         ullist.innerHTML +=content;  
+
+     }
 
 
+ }
+
+ fillContent();
 
