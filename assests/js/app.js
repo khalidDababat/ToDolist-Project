@@ -56,10 +56,13 @@ function createTask(text) {
   //fillContent(); 
 
 }
+fillContent();
 
 function SaveTask() {
   let tasks = JSON.stringify(listTAsk); // For Covert Array(Object )Into String
-  localStorage.setItem("tasks", tasks);
+  localStorage.setItem("tasks", tasks); 
+
+  
 } 
 
  function fillContent(){
@@ -87,5 +90,5 @@ function SaveTask() {
 
  }
 
- fillContent();
+
 
