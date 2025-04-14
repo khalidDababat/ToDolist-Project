@@ -1,8 +1,8 @@
 const taskInput = document.getElementById("task-input");
 const addbtn = document.getElementById("add-btn");
 const ullist = document.getElementById("conteaner-list");
-const listTAsk = [];
-
+const listTAsk =JSON.parse(localStorage.getItem("tasks")) || [];  ;
+               
 function AddTask() {
   const text = taskInput.value.trim();
   if (text == "") {
@@ -56,19 +56,25 @@ function createTask(text) {
   //fillContent(); 
 
 }
-fillContent();
+ 
+window.onload = function(){
+  fillContent(); 
+}
+ 
 
 function SaveTask() {
-  let tasks = JSON.stringify(listTAsk); // For Covert Array(Object )Into String
-  localStorage.setItem("tasks", tasks); 
+  let tasksstring = JSON.stringify(listTAsk); // For Covert Array(Object )Into String
+  localStorage.setItem("tasks", tasksstring); 
 
   
 } 
+ 
+
 
  function fillContent(){
   let reterveTask = JSON.parse(localStorage.getItem("tasks")) ||[]; 
      
-     ullist.innerHTML = ""; // Clear list first
+    //  ullist.innerHTML = ""; // Clear list first
 
      for(let i=0 ;i<reterveTask.length;i++){
       // console.log("Hi This",reterveTask[i].task);
@@ -84,11 +90,23 @@ function SaveTask() {
       
       `
          ullist.innerHTML +=content;  
-
+  
      }
-
+     
 
  }
+  
+
+ const q = document.querySelector(".icon-remove"); 
+ q.addEventListener("click",DeleteTask); 
+ 
+function DeleteTask(index){
+   
+   let task = listTAsk[index];
+
+} 
+
+
 
 
 
