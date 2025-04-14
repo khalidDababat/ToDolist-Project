@@ -60,7 +60,62 @@ function createTask(text) {
 window.onload = function(){
   fillContent(); 
 }
+  
+function findIndex(Task){
+   
+   let index =-1; 
+   for(let i=0;i<listTAsk.length;i++){
+         if(Task ==listTAsk[i].task){
+              index =i;  
+         }
+         
+   }
+  return index; 
+     
+}
+
+  
+  
+       
+  
+
+
+   // Use Event Delgation  For Delete Task and Edit Task 
+ullist.addEventListener("click", function (e) {
+    const label = e.target.parentElement.querySelector("label");
+    const taskText = label.textContent.split(" [")[0]; 
+    const index = findIndex(taskText);
+  if (e.target.classList.contains("icon-remove")) {
+    
+  
+    
+     // Remove task from listTAsk
+      
+    //  console.log(findIndex(taskText));
+     
+     if (index !== -1) {
+        listTAsk.splice(index, 1);
+        
+         SaveTask();
+         fillContent(); 
+      }
+
+    }
+     if(e.target.classList.contains("icon-edit")){
  
+        task = listTAsk[index]; 
+   
+        const newtask= prompt("Rename The Task!",task.task); 
+        listTAsk[index].task =newtask.trim(); 
+ 
+        SaveTask(); 
+        fillContent();
+
+      }
+  
+});
+ 
+
 
 function SaveTask() {
   let tasksstring = JSON.stringify(listTAsk); // For Covert Array(Object )Into String
@@ -74,7 +129,7 @@ function SaveTask() {
  function fillContent(){
   let reterveTask = JSON.parse(localStorage.getItem("tasks")) ||[]; 
      
-    //  ullist.innerHTML = ""; // Clear list first
+     ullist.innerHTML = ""; // Clear list first
 
      for(let i=0 ;i<reterveTask.length;i++){
       // console.log("Hi This",reterveTask[i].task);
@@ -97,14 +152,7 @@ function SaveTask() {
  }
   
 
- const q = document.querySelector(".icon-remove"); 
- q.addEventListener("click",DeleteTask); 
- 
-function DeleteTask(index){
-   
-   let task = listTAsk[index];
 
-} 
 
 
 
