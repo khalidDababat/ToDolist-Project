@@ -2,7 +2,9 @@ const taskInput = document.getElementById("task-input");
 const addbtn = document.getElementById("add-btn");
 const ullist = document.getElementById("conteaner-list");
 const listTAsk =JSON.parse(localStorage.getItem("tasks")) || [];  ;
-               
+
+
+
 function AddTask() {
   const text = taskInput.value.trim();
   if (text == "") {
@@ -74,11 +76,121 @@ function findIndex(Task){
      
 }
 
-  
+  function filterLow(){
+       
+    
+    let reterveTask = JSON.parse(localStorage.getItem("tasks")) ||[]; 
+     ullist.innerHTML = ""; // Clear list first
 
+     for(let i=0 ;i<reterveTask.length;i++){
+       //console.log("Hi This",reterveTask[i]);
+       if(reterveTask[i].proprity =="Low"){
+        let content =
+        `
+        <li>
+               <input type="checkbox" name="" id=""> 
+               <label for="">${reterveTask[i].task}</label>
+               <span class="icon-remove">&#128465; </span>
+               <span class="icon-edit">&#9998;</span>
+        
+        </li>
+        
+        `
+           ullist.innerHTML +=content; 
+       }
        
   
+     }
 
+  } 
+
+  function filterMedeum(){  
+    let reterveTask = JSON.parse(localStorage.getItem("tasks")) ||[]; 
+     
+    ullist.innerHTML = ""; // Clear list first
+
+    for(let i=0 ;i<reterveTask.length;i++){
+      //console.log("Hi This",reterveTask[i]);
+      if(reterveTask[i].proprity =="Medeum"){
+       let content =
+       `
+       <li>
+              <input type="checkbox" name="" id=""> 
+              <label for="">${reterveTask[i].task}</label>
+              <span class="icon-remove">&#128465; </span>
+              <span class="icon-edit">&#9998;</span>
+       
+       </li>
+       
+       `
+          ullist.innerHTML +=content; 
+      }
+      
+ 
+    }
+
+  }
+ 
+  
+  function filterHigh(){
+     let reterveTask = JSON.parse(localStorage.getItem("tasks")) ||[]; 
+     
+    ullist.innerHTML = ""; // Clear list first
+
+    for(let i=0 ;i<reterveTask.length;i++){
+      //console.log("Hi This",reterveTask[i]);
+      if(reterveTask[i].proprity =="high"){
+       let content =
+       `
+       <li>
+              <input type="checkbox" name="" id=""> 
+              <label for="">${reterveTask[i].task}</label>
+              <span class="icon-remove">&#128465; </span>
+              <span class="icon-edit">&#9998;</span>
+       
+       </li>
+       
+       `
+          ullist.innerHTML +=content; 
+      }
+      
+ 
+    }
+
+
+  }
+       
+  document.getElementById('btn-all').addEventListener("click", ()=>{
+
+    fillContent(); 
+  })
+ 
+   
+
+
+document.getElementById('btn-completed').addEventListener("click", () =>{
+  let reterveTask = JSON.parse(localStorage.getItem("tasks")) ||[]; 
+
+  ullist.innerHTML = ""; // Clear list first Times 
+
+  for(let i=0 ;i<reterveTask.length;i++){
+        //console.log("Hi This",reterveTask[i]);  For Depugging 
+    if(reterveTask[i].completed ==true){
+     let content =
+     `
+     <li>
+            <input type="checkbox" name="" id=""> 
+            <label for="">${reterveTask[i].task}</label>
+            <span class="icon-remove">&#128465; </span>
+            <span class="icon-edit">&#9998;</span>
+     
+     </li>
+     
+     `
+        ullist.innerHTML +=content; 
+    }
+  }
+});
 
    // Use Event Delgation  For Delete Task and Edit Task 
 ullist.addEventListener("click", function (e) {
