@@ -75,13 +75,15 @@ function findIndex(Task){
 }
 
   
-  
+
        
   
 
 
    // Use Event Delgation  For Delete Task and Edit Task 
 ullist.addEventListener("click", function (e) {
+    const li= document.querySelectorAll(".conteaner-list li") 
+
     const label = e.target.parentElement.querySelector("label");
     const taskText = label.textContent.split(" [")[0]; 
     const index = findIndex(taskText);
@@ -101,7 +103,7 @@ ullist.addEventListener("click", function (e) {
       }
 
     }
-     if(e.target.classList.contains("icon-edit")){
+     else if(e.target.classList.contains("icon-edit")){
  
         task = listTAsk[index]; 
    
@@ -112,6 +114,23 @@ ullist.addEventListener("click", function (e) {
         fillContent();
 
       }
+      if(e.target.tagname =='INPUT'|| e.target.type ==='checkbox'){
+             listTAsk[index].completed = e.target.checked; 
+             //console.log(listTAsk[index].completed);
+             if(listTAsk[index].completed==true){
+              li[index].classList.add("checked");
+              SaveTask();  
+             }else{
+              li[index].classList.remove("checked");
+              SaveTask();
+             }
+             
+               
+              
+              
+      }
+
+
   
 });
  

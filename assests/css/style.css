@@ -186,4 +186,12 @@ body{
 
 .checked{
     text-decoration: line-through;
+} 
+
+footer{
+
+    background-color: black; 
+    color: white;
+    padding: 20px; 
+
 }
