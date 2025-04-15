@@ -1,5 +1,7 @@
 const taskInput = document.getElementById("task-input");
 const addbtn = document.getElementById("add-btn"); 
+const ullist = document.getElementById("conteaner-list");
+const listTAsk = JSON.parse(localStorage.getItem("tasks")) || [];
 
 
 function AddTask() {
@@ -7,7 +9,7 @@ function AddTask() {
     if (text == "") {
       return;
     } else {
-<<<<<<< HEAD
+
      createTask(text);  
     }
   }
@@ -53,15 +55,14 @@ function AddTask() {
   
     listTAsk.push(obj);
     SaveTask();
-    //fillContent();
+   
   }
 
 
   function SaveTask() {
     let tasksstring = JSON.stringify(listTAsk); // For Covert Array(Object )Into String
     localStorage.setItem("tasks", tasksstring);
-=======
-    //   createTask(text);  
+
     }
->>>>>>> 9aad99b7418f102e451cf2150d86506dc0343850
-  }
+
+  
