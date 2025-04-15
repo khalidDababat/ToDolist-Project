@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To-DO List</title>
 
-    <link rel="stylesheet" href="assests/css/style.css" />
-    <link rel="icon" href="assests/meadea/icon .jpg" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" href="assests/images/icon.jpg" />
   </head>
   <body>
     <div class="conteaner">
@@ -14,37 +14,21 @@
         <h2>
           To-Do List
           <img
-            src="assests/meadea/eaac269b38f72dc15c683a2229d2bd55.jpg"
+            src="assests/images/logo.jpg"
             alt=""
           />
         </h2>
 
         <div class="input-text">
           <input type="text" id="task-input" name="" placeholder="Add a new Task" />
-          <button onclick="AddTask()">Add</button>
+          <button>Add</button>
         </div>
 
-        <div class="category-prority">
-          <p>Please Select Yout Prority Task: </p>
-          <label><input type="radio" name="prority" id="low"   value="Low" /> LOW</label>
-          <label><input type="radio" name="prority" id="high"  value="high" /> high</label>
-          <label><input type="radio" name="prority" id="Medeum"value="Medeum" /> Medeum</label>
-        </div>
+        
 
 
 
-        <div class="category-div">
-          <button class="btn-all active" id="btn-all">All</button>
-          <button class="btn-completed" id="btn-completed">Completed</button>
-          <!-- <button class="btn-clearall" id="btn-clearall">Clear All</button> -->
-        </div>
-
-
-        <div class="category-prority-btn">
-          <button class="btn-low active" id="btn-low" onclick="filterLow()">Low</button>
-          <button class="btn-medeum" id="btn-medeum"  onclick="filterMedeum()">Medeum</button>
-          <button class="btn-high"  id="btn-High"     onclick="filterHigh()">High</button>
-        </div>
+     
         <hr />
 
 
@@ -70,6 +54,6 @@
 
     </div>
 
-    <script src="assests/js/app.js"></script>
+    <script type="module" src="js/app.js"></script>
   </body>
 </html>
