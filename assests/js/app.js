@@ -7,6 +7,7 @@ function AddTask() {
     if (text == "") {
       return;
     } else {
+<<<<<<< HEAD
      createTask(text);  
     }
   }
@@ -59,4 +60,8 @@ function AddTask() {
   function SaveTask() {
     let tasksstring = JSON.stringify(listTAsk); // For Covert Array(Object )Into String
     localStorage.setItem("tasks", tasksstring);
+=======
+    //   createTask(text);  
+    }
+>>>>>>> 9aad99b7418f102e451cf2150d86506dc0343850
   }
