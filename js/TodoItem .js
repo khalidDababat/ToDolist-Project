@@ -1,6 +1,6 @@
 class Todoitem {
-  constructor(text, completed = false) {
-    this.task = text;
+  constructor(task, completed = false) {
+    this.task = task;
     this.completed = completed;
   }
 }
