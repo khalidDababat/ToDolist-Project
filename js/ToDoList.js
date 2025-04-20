@@ -1,58 +1,59 @@
- 
- class ToDoList{
+import { Todoitem } from "./TodoItem .js";
 
-   constructor(){
-      this.tasks =JSON.parse(localStorage.getItem("tasks"))|| []; 
-      this.ullist = document.getElementById("conteaner-list");
-      
-   } 
+class ToDoList {
+  tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  input_task = document.getElementById("task-input");
+  addBtn = document.getElementById("add-btn");
 
-      addTask(name ,prority){
-          const newItem = {
-            task: name,
-            priority: prority,
-            completed: false
-          } 
-          this.tasks.push(newItem); 
-          //console.log(this.tasks);   // Depuging  Done   
-          this.SaveTask(); 
-
+  constructor() {
+    this.addBtn.addEventListener("click", () => {
+      if (this.input_task.value == "") {
+        alert("You should add a task!");
+      } else {
+        //console.log("this is value",this.input_task.value);
+        this.addTask(this.input_task.value);
+        this.SaveTask();
       }
+    });
+  }
 
-      PrintTask(text ,selectedPrority){
-        
-         this.ullist.innerHTML =''; 
-         for(let i=0 ;i<this.tasks.length;i++){
-            const li = document.createElement('li');
-            
-            if(this.tasks[i].completed){
-                li.classList.add('checked'); 
-            }
+  addTask(name) {
+    const value = this.input_task.value.trim();
+    const newTask = new Todoitem(value);
 
-             li.innerHTML =`
-                   <input type="checkbox" name="" id=""> 
-                   <label for=""> ${this.tasks[i].task}</label>
-                   <span class="icon-remove">&#128465; </span>
-                   <span class="icon-edit">&#9998;</span>
-             
-             
-                           `;
-            this.ullist.appendChild(li);         
+    this.tasks.push(newTask);
+    this.SaveTask();
+    // console.log("this value before Print",this.input_task.value);
+    this.PrintTask(this.input_task.value);
+    this.input_task.value = " ";
+  }
 
-         }
+  PrintTask(text) {
+    const ullist = document.getElementById("conteaner-list");
+    const li = document.createElement("li");
+    const inputcheck = document.createElement("input");
+    const label = document.createElement("label");
+    const spanremove = document.createElement("span");
+    const spanedit = document.createElement("span");
 
-       
-      }
+    inputcheck.setAttribute("type", "checkbox");
+    label.innerHTML = `${text}`;
+    spanremove.setAttribute("class", "icon-remove");
+    spanedit.setAttribute("class", "icon-edit");
+    spanremove.innerHTML = "&#128465";
+    spanedit.innerHTML = "&#9998;";
 
-      
-       
-       SaveTask() {
-        let tasksstring = JSON.stringify(this.tasks); // For Covert Array(Object )Into String
-        localStorage.setItem("tasks", tasksstring);
-    
-        }
+    ullist.appendChild(li);
+    li.appendChild(inputcheck);
+    li.appendChild(label);
+    li.appendChild(spanremove);
+    li.appendChild(spanedit);
+  }
 
+  SaveTask() {
+    let tasksstring = JSON.stringify(this.tasks); // For Covert Array(Object )Into String
+    localStorage.setItem("tasks", tasksstring);
+  }
+}
 
- }
-
- export {ToDoList}; 
+export { ToDoList };
