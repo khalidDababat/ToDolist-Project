@@ -4,6 +4,7 @@ class ToDoList {
   constructor() {
     this.tasks = JSON.parse(localStorage.getItem("tasks")) || [];
     this.renderTasks();
+    // console.log( "this for depug",this.tasks[0]);
   }
 
   addTask(taskDescription) {
@@ -14,13 +15,17 @@ class ToDoList {
     taskDescription.value = "";
   }
    
-    
+  removeTask(index) {
+    this.tasks.splice(index, 1);
+    this.saveIntoLocalStorage();
+    this.renderTasks();   
+  }
 
   renderTasks() {
     const ullist  = document.getElementById("conteaner-list");
     ullist .innerHTML = "";
 
-    this.tasks.forEach((e) => {
+    this.tasks.forEach((e,index) => {
       const listItem = document.createElement("li");
       const inputCheck = document.createElement("input");
       const taskLabel = document.createElement("label");
@@ -39,6 +44,20 @@ class ToDoList {
       listItem.appendChild(taskLabel);
       listItem.appendChild(iconRemove);
       listItem.appendChild(iconEdit);
+
+      iconEdit.addEventListener("click",()=>{
+        const newTask = prompt("Edit your task", e.task);
+        if (newTask) {
+          this.tasks[index].task = newTask;
+          this.saveIntoLocalStorage();
+          this.renderTasks();
+        }
+      })
+      iconRemove.addEventListener("click", () => {
+         this.removeTask(index);
+       
+      });
+
     });
   }
 
