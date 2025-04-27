@@ -1,14 +1,16 @@
 import { ToDoList } from "./ToDoList.js";
 
-const AddBtn = document.querySelector(".input-text button");
-const description_task = document.getElementById("task-input");
+const addBtn = document.querySelector(".input-text button");
+const descriptionTask = document.getElementById("task-input");
 
 document.addEventListener("DOMContentLoaded", () => {
-  AddBtn.addEventListener("click", () => {
-    if (description_task.value == "") {
+  const newTask = new ToDoList();
+  addBtn.addEventListener("click", () => {
+    if (descriptionTask.value == "") {
       alert("You should add a task!");
     } else {
-      new ToDoList();
+      newTask.addTask(descriptionTask);
+      newTask.renderTasks();
     }
   });
 });

@@ -1,51 +1,50 @@
 import { Todoitem } from "./TodoItem .js";
 
 class ToDoList {
-  description_task = document.getElementById("task-input");
-
   constructor() {
     this.tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    this.addTask(this.description_task);
+    this.renderTasks();
   }
 
-  addTask(description_task) {
-    const value = description_task.value.trim();
+  addTask(taskDescription) {
+    const value = taskDescription.value.trim();
     const newTask = new Todoitem(value);
     this.tasks.push(newTask);
-    this.Save_Into_LocalStorge();
-    this.renderTasks();
-    description_task.value = " ";
+    this.saveIntoLocalStorage();
+    taskDescription.value = "";
   }
+   
+    
 
   renderTasks() {
-    const Ul_list = document.getElementById("conteaner-list");
-    Ul_list.innerHTML = "";
+    const ullist  = document.getElementById("conteaner-list");
+    ullist .innerHTML = "";
 
     this.tasks.forEach((e) => {
-      const List_Item = document.createElement("li");
-      const InputCheck = document.createElement("input");
-      const Label_Text = document.createElement("label");
-      const IconRemove = document.createElement("span");
-      const IconEdit = document.createElement("span");
+      const listItem = document.createElement("li");
+      const inputCheck = document.createElement("input");
+      const taskLabel = document.createElement("label");
+      const iconRemove = document.createElement("span");
+      const iconEdit = document.createElement("span");
 
-      InputCheck.setAttribute("type", "checkbox");
-      Label_Text.innerHTML = e.task;
-      IconRemove.setAttribute("class", "icon-remove");
-      IconEdit.setAttribute("class", "icon-edit");
-      IconRemove.innerHTML = "&#128465";
-      IconEdit.innerHTML = "&#9998;";
+      inputCheck.setAttribute("type", "checkbox");
+      taskLabel.innerHTML = e.task;
+      iconRemove.setAttribute("class", "icon-remove");
+      iconEdit.setAttribute("class", "icon-edit");
+      iconRemove.innerHTML = "&#128465";
+      iconEdit.innerHTML = "&#9998;";
 
-      Ul_list.appendChild(List_Item);
-      List_Item.appendChild(InputCheck);
-      List_Item.appendChild(Label_Text);
-      List_Item.appendChild(IconRemove);
-      List_Item.appendChild(IconEdit);
+      ullist .appendChild(listItem);
+      listItem.appendChild(inputCheck);
+      listItem.appendChild(taskLabel);
+      listItem.appendChild(iconRemove);
+      listItem.appendChild(iconEdit);
     });
   }
 
-  Save_Into_LocalStorge() {
-    let TaskString = JSON.stringify(this.tasks);
-    localStorage.setItem("tasks", TaskString);
+  saveIntoLocalStorage() {
+    const taskString = JSON.stringify(this.tasks);
+    localStorage.setItem("tasks", taskString);
   }
 }
 
