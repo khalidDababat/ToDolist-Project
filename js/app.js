@@ -4,6 +4,7 @@ const addBtn = document.querySelector(".input-text button");
 const descriptionTask = document.getElementById("task-input");
 const priorityTask = document.getElementsByName("prority");
 
+
 document.addEventListener("DOMContentLoaded", () => {
   const toDoList = new ToDoList();
   addBtn.addEventListener("click", () => {

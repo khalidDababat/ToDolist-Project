@@ -144,47 +144,41 @@ body{
     border: 2px solid black;
 } 
 
-/* .small-word{
-  display: inline-block; 
-  font-size: 12px; 
-  position: absolute;
-  right: 770px; 
-  bottom: -80px; 
-  font-weight: lighter;
-} */
 
-
-
-.icon-remove{
-    position: absolute;
-    right: 450px;
-
-}
-.icon-edit{
-    position: absolute;
-    right: 480px;
-
-}
- 
-.todo-tasks ul li{
-     
+.todo-tasks ul li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     list-style: none;
-    padding: 12px 10px 12px 5px; 
-    font-size: 17px; 
+    padding: 12px 10px;
+    font-size: 17px;
     font-weight: bold;
-    /* user-select: none;  */
+    margin-bottom: 10px;
+    border-radius: 8px;
+  }
+  
+  .todo-tasks ul li label {
+    font-size: 20px;
     cursor: pointer;
+    margin-left: 15px;
+    flex: 1; 
+  }
+  
+  .icon-remove,
+  .icon-edit {
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 20px;
+    
+  }
 
-}
 
-.todo-tasks ul li label{
-      font-size: 20px;
-      cursor: pointer;
-      margin-left: 15px;
 
-}
 
 .checked{
     text-decoration: line-through;
 } 
-
+ 
+.conteaner-list{
+    margin-top: 12px;
+}
