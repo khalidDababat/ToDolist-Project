@@ -1,8 +1,6 @@
 import { Todoitem } from "./TodoItem .js";
 
-class ToDoList { 
-   
-
+class ToDoList {
   constructor() {
     this.tasks = JSON.parse(localStorage.getItem("tasks")) || [];
     this.renderTasks();
@@ -12,12 +10,10 @@ class ToDoList {
     const value = taskDescription.value.trim();
     const newTask = new Todoitem(value, priority);
     this.tasks.push(newTask);
-    
+
     this.saveIntoLocalStorage();
     taskDescription.value = "";
-  } 
-   
-  
+  }
 
   removeTask(index) {
     this.tasks.splice(index, 1);
@@ -48,15 +44,14 @@ class ToDoList {
       listItem.appendChild(taskLabel);
       listItem.appendChild(iconRemove);
       listItem.appendChild(iconEdit);
-    
-      if(task.priority == "high"){
+
+      if (task.priority == "high") {
         listItem.style.backgroundColor = "rgba(255, 0, 0, 0.2)";
-      }else if(task.priority == "Medeum"){
+      } else if (task.priority == "Medeum") {
         listItem.style.backgroundColor = "rgba(255, 165, 0, 0.2)";
-      }else{
+      } else {
         listItem.style.backgroundColor = "rgba(0, 128, 0, 0.2)";
       }
-     
 
       iconEdit.addEventListener("click", () => {
         const newTask = prompt("Edit your task", task.task);
@@ -69,8 +64,6 @@ class ToDoList {
       iconRemove.addEventListener("click", () => {
         this.removeTask(index);
       });
-
-
     });
   }
 
