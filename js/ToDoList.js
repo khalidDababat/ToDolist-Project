@@ -25,7 +25,7 @@ class ToDoList {
     const ullist  = document.getElementById("conteaner-list");
     ullist .innerHTML = "";
 
-    this.tasks.forEach((e,index) => {
+    this.tasks.forEach((task,index) => {
       const listItem = document.createElement("li");
       const inputCheck = document.createElement("input");
       const taskLabel = document.createElement("label");
@@ -33,11 +33,12 @@ class ToDoList {
       const iconEdit = document.createElement("span");
 
       inputCheck.setAttribute("type", "checkbox");
-      taskLabel.innerHTML = e.task;
+      taskLabel.innerHTML = task.task;
       iconRemove.setAttribute("class", "icon-remove");
       iconEdit.setAttribute("class", "icon-edit");
       iconRemove.innerHTML = "&#128465";
       iconEdit.innerHTML = "&#9998;";
+
 
       ullist .appendChild(listItem);
       listItem.appendChild(inputCheck);
@@ -46,7 +47,7 @@ class ToDoList {
       listItem.appendChild(iconEdit);
 
       iconEdit.addEventListener("click",()=>{
-        const newTask = prompt("Edit your task", e.task);
+        const newTask = prompt("Edit your task", task.task);
         if (newTask) {
           this.tasks[index].task = newTask;
           this.saveIntoLocalStorage();

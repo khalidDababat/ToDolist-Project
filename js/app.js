@@ -4,13 +4,13 @@ const addBtn = document.querySelector(".input-text button");
 const descriptionTask = document.getElementById("task-input");
 
 document.addEventListener("DOMContentLoaded", () => {
-  const newTask = new ToDoList();
+  const toDoList = new ToDoList();
   addBtn.addEventListener("click", () => {
     if (descriptionTask.value == "") {
       alert("You should add a task!");
     } else {
-      newTask.addTask(descriptionTask);
-      newTask.renderTasks();
+      toDoList.addTask(descriptionTask);
+      toDoList.renderTasks();
     }
   });
 
