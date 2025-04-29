@@ -21,7 +21,7 @@ class ToDoList {
     this.renderTasks();
   } 
 
- 
+  
 
   renderTasks() {
     const ullist = document.getElementById("conteaner-list");
@@ -47,17 +47,26 @@ class ToDoList {
       listItem.appendChild(iconRemove);
       listItem.appendChild(iconEdit);
      
-      inputCheck.addEventListener("change", () => {
-        task.completed =inputCheck.checked;
+      inputCheck.addEventListener("click", () => {
+        this.tasks[index].completed =inputCheck.checked;
+        if (this.tasks[index].completed == true) {
+          taskLabel.className = "checked";
+        }else{
+          taskLabel.className = "unchecked"; 
+        }
+          
+
         this.saveIntoLocalStorage(); 
       });
+      
 
       if(task.completed == true){
-        taskLabel.classList.add("checked");           
+        taskLabel.className = "checked";
+             
       }else{
-        taskLabel.classList.remove("checked");
+        taskLabel.className = "unchecked"; 
       }
-      
+      inputCheck.checked = task.completed;
 
 
       if (task.priority == "high") {

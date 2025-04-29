@@ -178,6 +178,9 @@ body{
 .checked{
     text-decoration: line-through;
 } 
+.uncheckedP{
+    text-decoration: none;
+}
  
 .conteaner-list{
     margin-top: 12px;
