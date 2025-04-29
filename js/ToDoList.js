@@ -4,28 +4,28 @@ class ToDoList {
   constructor() {
     this.tasks = JSON.parse(localStorage.getItem("tasks")) || [];
     this.renderTasks();
-    // console.log( "this for depug",this.tasks[0]);
   }
 
-  addTask(taskDescription) {
+  addTask(taskDescription, priority) {
     const value = taskDescription.value.trim();
-    const newTask = new Todoitem(value);
+    const newTask = new Todoitem(value, priority);
     this.tasks.push(newTask);
+
     this.saveIntoLocalStorage();
     taskDescription.value = "";
   }
-   
+
   removeTask(index) {
     this.tasks.splice(index, 1);
     this.saveIntoLocalStorage();
-    this.renderTasks();   
+    this.renderTasks();
   }
 
   renderTasks() {
-    const ullist  = document.getElementById("conteaner-list");
-    ullist .innerHTML = "";
+    const ullist = document.getElementById("conteaner-list");
+    ullist.innerHTML = "";
 
-    this.tasks.forEach((task,index) => {
+    this.tasks.forEach((task, index) => {
       const listItem = document.createElement("li");
       const inputCheck = document.createElement("input");
       const taskLabel = document.createElement("label");
@@ -39,26 +39,31 @@ class ToDoList {
       iconRemove.innerHTML = "&#128465";
       iconEdit.innerHTML = "&#9998;";
 
-
-      ullist .appendChild(listItem);
+      ullist.appendChild(listItem);
       listItem.appendChild(inputCheck);
       listItem.appendChild(taskLabel);
       listItem.appendChild(iconRemove);
       listItem.appendChild(iconEdit);
 
-      iconEdit.addEventListener("click",()=>{
+      if (task.priority == "high") {
+        listItem.style.backgroundColor = "rgba(255, 0, 0, 0.2)";
+      } else if (task.priority == "Medeum") {
+        listItem.style.backgroundColor = "rgba(255, 165, 0, 0.2)";
+      } else {
+        listItem.style.backgroundColor = "rgba(0, 128, 0, 0.2)";
+      }
+
+      iconEdit.addEventListener("click", () => {
         const newTask = prompt("Edit your task", task.task);
         if (newTask) {
           this.tasks[index].task = newTask;
           this.saveIntoLocalStorage();
           this.renderTasks();
         }
-      })
-      iconRemove.addEventListener("click", () => {
-         this.removeTask(index);
-       
       });
-
+      iconRemove.addEventListener("click", () => {
+        this.removeTask(index);
+      });
     });
   }
 
