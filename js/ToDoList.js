@@ -19,7 +19,9 @@ class ToDoList {
     this.tasks.splice(index, 1);
     this.saveIntoLocalStorage();
     this.renderTasks();
-  }
+  } 
+
+ 
 
   renderTasks() {
     const ullist = document.getElementById("conteaner-list");
@@ -44,6 +46,19 @@ class ToDoList {
       listItem.appendChild(taskLabel);
       listItem.appendChild(iconRemove);
       listItem.appendChild(iconEdit);
+     
+      inputCheck.addEventListener("change", () => {
+        task.completed =inputCheck.checked;
+        this.saveIntoLocalStorage(); 
+      });
+
+      if(task.completed == true){
+        taskLabel.classList.add("checked");           
+      }else{
+        taskLabel.classList.remove("checked");
+      }
+      
+
 
       if (task.priority == "high") {
         listItem.style.backgroundColor = "rgba(255, 0, 0, 0.2)";
@@ -64,7 +79,9 @@ class ToDoList {
       iconRemove.addEventListener("click", () => {
         this.removeTask(index);
       });
-    });
+    }); 
+   
+   
   }
 
   saveIntoLocalStorage() {
