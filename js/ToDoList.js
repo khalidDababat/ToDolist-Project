@@ -45,6 +45,24 @@ class ToDoList {
       listItem.appendChild(iconRemove);
       listItem.appendChild(iconEdit);
 
+      inputCheck.addEventListener("click", () => {
+        this.tasks[index].completed = inputCheck.checked;
+        if (this.tasks[index].completed === true) {
+          taskLabel.className = "checked";
+        } else {
+          taskLabel.className = "unchecked";
+        }
+
+        this.saveIntoLocalStorage();
+      });
+
+      if (task.completed == true) {
+        taskLabel.className = "checked";
+      } else {
+        taskLabel.className = "unchecked";
+      }
+      inputCheck.checked = task.completed;
+
       if (task.priority == "high") {
         listItem.style.backgroundColor = "rgba(255, 0, 0, 0.2)";
       } else if (task.priority == "Medeum") {
