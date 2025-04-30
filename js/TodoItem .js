@@ -1,5 +1,5 @@
 class Todoitem {
-  constructor(task, priority ='low', completed = false) {
+  constructor(task, priority = "low", completed = false) {
     this.task = task;
     this.completed = completed;
     this.priority = priority;
