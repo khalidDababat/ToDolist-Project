@@ -6,16 +6,16 @@ class ToDoList {
 
     document.getElementById("btn-low").addEventListener("click", () => {
       this.setFilter("Low");
-      console.log("low");
     });
     document.getElementById("btn-High").addEventListener("click", () => {
       this.setFilter("high");
-      console.log("high");
     });
 
     document.getElementById("btn-medeum").addEventListener("click", () => {
       this.setFilter("Medeum");
-      console.log("Medeum");
+    });
+    document.getElementById("btn-all").addEventListener("click", () => {
+      this.setFilter("all");
     });
 
     this.renderTasks();
@@ -50,17 +50,14 @@ class ToDoList {
       listFilterTasks = this.tasks.filter(
         (task) => task.priority === this.filterTask
       );
-      console.log(listFilterTasks);
     } else if (this.filterTask == "high") {
       listFilterTasks = this.tasks.filter(
         (task) => task.priority === this.filterTask
       );
-      console.log(listFilterTasks);
     } else if (this.filterTask == "Medeum") {
       listFilterTasks = this.tasks.filter(
         (task) => task.priority === this.filterTask
       );
-      console.log(listFilterTasks);
     } else {
       listFilterTasks = this.tasks;
     }
@@ -123,8 +120,6 @@ class ToDoList {
         this.removeTask(index);
       });
     });
-
-    listFilterTasks = [];
   }
 
   saveIntoLocalStorage() {
