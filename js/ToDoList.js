@@ -3,7 +3,6 @@ import { Todoitem } from "./TodoItem .js";
 class ToDoList {
   constructor() {
     this.tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    this.renderTasks();
 
     document.getElementById("btn-low").addEventListener("click", () => {
       this.setFilter("Low");
@@ -17,6 +16,8 @@ class ToDoList {
     document.getElementById("btn-all").addEventListener("click", () => {
       this.setFilter("All");
     });
+
+    this.renderTasks();
   }
 
   addTask(taskDescription, priority) {
@@ -43,6 +44,8 @@ class ToDoList {
     const ullist = document.getElementById("conteaner-list");
     ullist.innerHTML = "";
 
+    const currentFilter = this.filterTask || "All"; // medume
+
     this.tasks.forEach((task, index) => {
       const listItem = document.createElement("li");
       const inputCheck = document.createElement("input");
@@ -57,25 +60,16 @@ class ToDoList {
       iconRemove.innerHTML = "&#128465";
       iconEdit.innerHTML = "&#9998";
 
+      if (task.priority !== currentFilter && currentFilter !== "All") {
+        return;
+      }
+
       ullist.appendChild(listItem);
       listItem.appendChild(inputCheck);
       listItem.appendChild(taskLabel);
       listItem.appendChild(iconRemove);
       listItem.appendChild(iconEdit);
 
-      if (this.filterTask == "Low" && task.priority != "Low") {
-        listItem.style.display = "none";
-      } else if (this.filterTask == "High" && task.priority != "High") {
-        listItem.style.display = "none";
-      } else if (this.filterTask == "Medeum" && task.priority != "Medeum") {
-        listItem.style.display = "none";
-      } else if (this.filterTask == "All") {
-        ullist.appendChild(listItem);
-        listItem.appendChild(inputCheck);
-        listItem.appendChild(taskLabel);
-        listItem.appendChild(iconRemove);
-        listItem.appendChild(iconEdit);
-      }
       inputCheck.addEventListener("click", () => {
         this.tasks[index].completed = inputCheck.checked;
         if (this.tasks[index].completed === true) {
