@@ -3,8 +3,6 @@ import { ToDoList } from "./ToDoList.js";
 const addBtn = document.querySelector(".input-text button");
 const descriptionTask = document.getElementById("task-input");
 const priorityTask = document.getElementsByName("prority");
- 
-
 
 document.addEventListener("DOMContentLoaded", () => {
   const toDoList = new ToDoList();
@@ -22,9 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       toDoList.renderTasks();
     }
-
   });
 
-  
- 
+  document.getElementById("btn-all").addEventListener("click", () => {
+    toDoList.renderTasks();
+  });
 });

@@ -1,23 +1,19 @@
 import { Todoitem } from "./TodoItem .js";
 
-class ToDoList { 
-
-   
+class ToDoList {
   // btnMedeum = document.getElementById("btn-medeum");
   // btnHigh = document.getElementById("btn-high");
   // btnAll = document.getElementById("btn-all");
 
-
   constructor() {
-    this.tasks = JSON.parse(localStorage.getItem("tasks")) || []; 
-    this.lowTask= this.tasks.filter(task => task.priority === "Low");
-    this.highTask= this.tasks.filter(task => task.priority === "high");
-    this.medeumTask= this.tasks.filter(task => task.priority === "Medeum");  
+    this.tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    this.lowTask = this.tasks.filter((task) => task.priority === "Low");
+    this.highTask = this.tasks.filter((task) => task.priority === "high");
+    this.medeumTask = this.tasks.filter((task) => task.priority === "Medeum");
     this.renderTasks();
   }
 
- 
-  addTask(taskDescription, priority) {  
+  addTask(taskDescription, priority) {
     const value = taskDescription.value.trim();
     const newTask = new Todoitem(value, priority);
     this.tasks.push(newTask);
@@ -30,16 +26,12 @@ class ToDoList {
     this.tasks.splice(index, 1);
     this.saveIntoLocalStorage();
     this.renderTasks();
-  } 
- 
-  
-  
-  
- 
+  }
+
   renderFilterTasks(filteredTasks) {
     const ullist = document.getElementById("conteaner-list");
     ullist.innerHTML = "";
-  
+
     filteredTasks.forEach((task, index) => {
       const listItem = document.createElement("li");
       const inputCheck = document.createElement("input");
@@ -85,9 +77,6 @@ class ToDoList {
       } else {
         listItem.style.backgroundColor = "rgba(0, 128, 0, 0.2)";
       }
-       
-     
-     
 
       iconEdit.addEventListener("click", () => {
         const newTask = prompt("Edit your task", task.task);
@@ -102,22 +91,22 @@ class ToDoList {
       });
     });
   }
-  
+
   renderTasks() {
     const ullist = document.getElementById("conteaner-list");
     ullist.innerHTML = "";
-    
-    document.getElementById('btn-low').addEventListener("click", () => {
-      this.renderFilterTasks(this.lowTask); 
-     }); 
 
-     document.getElementById('btn-medeum').addEventListener("click", () => {
-      this.renderFilterTasks(this.medeumTask); 
-     });
+    document.getElementById("btn-low").addEventListener("click", () => {
+      this.renderFilterTasks(this.lowTask);
+    });
 
-     document.getElementById('btn-High').addEventListener("click", () => {
-      this.renderFilterTasks(this.highTask); 
-     });
+    document.getElementById("btn-medeum").addEventListener("click", () => {
+      this.renderFilterTasks(this.medeumTask);
+    });
+
+    document.getElementById("btn-High").addEventListener("click", () => {
+      this.renderFilterTasks(this.highTask);
+    });
 
     this.tasks.forEach((task, index) => {
       const listItem = document.createElement("li");
@@ -164,9 +153,6 @@ class ToDoList {
       } else {
         listItem.style.backgroundColor = "rgba(0, 128, 0, 0.2)";
       }
-       
-     
-     
 
       iconEdit.addEventListener("click", () => {
         const newTask = prompt("Edit your task", task.task);
