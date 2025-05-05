@@ -57,38 +57,25 @@ class ToDoList {
       iconRemove.innerHTML = "&#128465";
       iconEdit.innerHTML = "&#9998";
 
-      if (this.filterTask == "Low" && task.priority == "Low") {
-        ullist.appendChild(listItem);
-        listItem.appendChild(inputCheck);
-        listItem.appendChild(taskLabel);
-        listItem.appendChild(iconRemove);
-        listItem.appendChild(iconEdit);
-      } else if (this.filterTask == "High" && task.priority == "High") {
-        ullist.appendChild(listItem);
-        listItem.appendChild(inputCheck);
-        listItem.appendChild(taskLabel);
-        listItem.appendChild(iconRemove);
-        listItem.appendChild(iconEdit);
-      } else if (this.filterTask == "Medeum" && task.priority == "Medeum") {
-        ullist.appendChild(listItem);
-        listItem.appendChild(inputCheck);
-        listItem.appendChild(taskLabel);
-        listItem.appendChild(iconRemove);
-        listItem.appendChild(iconEdit);
+      ullist.appendChild(listItem);
+      listItem.appendChild(inputCheck);
+      listItem.appendChild(taskLabel);
+      listItem.appendChild(iconRemove);
+      listItem.appendChild(iconEdit);
+
+      if (this.filterTask == "Low" && task.priority != "Low") {
+        listItem.style.display = "none";
+      } else if (this.filterTask == "High" && task.priority != "High") {
+        listItem.style.display = "none";
+      } else if (this.filterTask == "Medeum" && task.priority != "Medeum") {
+        listItem.style.display = "none";
       } else if (this.filterTask == "All") {
         ullist.appendChild(listItem);
         listItem.appendChild(inputCheck);
         listItem.appendChild(taskLabel);
         listItem.appendChild(iconRemove);
         listItem.appendChild(iconEdit);
-      } else if (this.filterTask == undefined) {
-        ullist.appendChild(listItem);
-        listItem.appendChild(inputCheck);
-        listItem.appendChild(taskLabel);
-        listItem.appendChild(iconRemove);
-        listItem.appendChild(iconEdit);
       }
-
       inputCheck.addEventListener("click", () => {
         this.tasks[index].completed = inputCheck.checked;
         if (this.tasks[index].completed === true) {
