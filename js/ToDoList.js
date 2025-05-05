@@ -56,33 +56,38 @@ class ToDoList {
       iconRemove.setAttribute("class", "icon-remove");
       iconEdit.setAttribute("class", "icon-edit");
       iconRemove.innerHTML = "&#128465";
-      iconEdit.innerHTML = "&#9998;";
+      iconEdit.innerHTML = "&#9998";
 
-      if (this.filterTask == "Low") {
-        if (task.priority != "Low") {
-          listItem.style.display = "none";
-        } else {
-          listItem.style.display = "block";
-        }
-      } else if (this.filterTask == "High") {
-        if (task.priority != "High") {
-          listItem.style.display = "none";
-        } else {
-          listItem.style.display = "block";
-        }
-      } else if (this.filterTask == "Medeum") {
-        if (task.priority != "Medeum") {
-          listItem.style.display = "none";
-        } else {
-          listItem.style.display = "block";
-        }
+      if (this.filterTask == "Low" && task.priority == "Low") {
+        ullist.appendChild(listItem);
+        listItem.appendChild(inputCheck);
+        listItem.appendChild(taskLabel);
+        listItem.appendChild(iconRemove);
+        listItem.appendChild(iconEdit);
       }
 
-      ullist.appendChild(listItem);
-      listItem.appendChild(inputCheck);
-      listItem.appendChild(taskLabel);
-      listItem.appendChild(iconRemove);
-      listItem.appendChild(iconEdit);
+      if (this.filterTask == "High" && task.priority == "High") {
+        ullist.appendChild(listItem);
+        listItem.appendChild(inputCheck);
+        listItem.appendChild(taskLabel);
+        listItem.appendChild(iconRemove);
+        listItem.appendChild(iconEdit);
+      }
+
+      if (this.filterTask == "Medeum" && task.priority == "Medeum") {
+        ullist.appendChild(listItem);
+        listItem.appendChild(inputCheck);
+        listItem.appendChild(taskLabel);
+        listItem.appendChild(iconRemove);
+        listItem.appendChild(iconEdit);
+      }
+      if (this.filterTask == "All") {
+        ullist.appendChild(listItem);
+        listItem.appendChild(inputCheck);
+        listItem.appendChild(taskLabel);
+        listItem.appendChild(iconRemove);
+        listItem.appendChild(iconEdit);
+      }
 
       inputCheck.addEventListener("click", () => {
         this.tasks[index].completed = inputCheck.checked;
