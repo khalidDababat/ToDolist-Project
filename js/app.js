@@ -21,8 +21,4 @@ document.addEventListener("DOMContentLoaded", () => {
       toDoList.renderTasks();
     }
   });
-
-  document.getElementById("btn-all").addEventListener("click", () => {
-    toDoList.renderTasks();
-  });
 });

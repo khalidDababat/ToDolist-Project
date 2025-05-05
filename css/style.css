@@ -58,7 +58,7 @@ body {
   padding: 16px 50px;
 
   background-color: #3c86ff;
-  color: white;
+  color: black;
   font-size: 16px;
   cursor: pointer;
   border-radius: 40px;
@@ -86,21 +86,9 @@ body {
   outline: none;
 }
 
-#btn-clearall {
-  background-color: red !important;
-}
-
 .input-text button:hover {
-  border: 2px solid black;
-}
-
-.category-div button:hover {
-  border: 2px solid black;
-}
-
-.btn-clearall {
-  position: absolute;
-  right: 460px;
+  background-color: rgb(108, 149, 206);
+  transition: 0.9s;
 }
 
 .category-prority p {
@@ -129,7 +117,8 @@ body {
   cursor: pointer;
 }
 .category-prority-btn button:hover {
-  border: 2px solid black;
+  background-color: rgb(133, 170, 221);
+  transition: 0.9s;
 }
 
 .todo-tasks ul li {
