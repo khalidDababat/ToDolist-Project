@@ -3,6 +3,7 @@ import { Todoitem } from "./TodoItem .js";
 class ToDoList {
   constructor() {
     this.tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    this.renderTasks();
 
     document.getElementById("btn-low").addEventListener("click", () => {
       this.setFilter("Low");
@@ -16,8 +17,6 @@ class ToDoList {
     document.getElementById("btn-all").addEventListener("click", () => {
       this.setFilter("All");
     });
-
-    this.renderTasks();
   }
 
   addTask(taskDescription, priority) {
@@ -64,24 +63,25 @@ class ToDoList {
         listItem.appendChild(taskLabel);
         listItem.appendChild(iconRemove);
         listItem.appendChild(iconEdit);
-      }
-
-      if (this.filterTask == "High" && task.priority == "High") {
+      } else if (this.filterTask == "High" && task.priority == "High") {
         ullist.appendChild(listItem);
         listItem.appendChild(inputCheck);
         listItem.appendChild(taskLabel);
         listItem.appendChild(iconRemove);
         listItem.appendChild(iconEdit);
-      }
-
-      if (this.filterTask == "Medeum" && task.priority == "Medeum") {
+      } else if (this.filterTask == "Medeum" && task.priority == "Medeum") {
         ullist.appendChild(listItem);
         listItem.appendChild(inputCheck);
         listItem.appendChild(taskLabel);
         listItem.appendChild(iconRemove);
         listItem.appendChild(iconEdit);
-      }
-      if (this.filterTask == "All") {
+      } else if (this.filterTask == "All") {
+        ullist.appendChild(listItem);
+        listItem.appendChild(inputCheck);
+        listItem.appendChild(taskLabel);
+        listItem.appendChild(iconRemove);
+        listItem.appendChild(iconEdit);
+      } else if (this.filterTask == undefined) {
         ullist.appendChild(listItem);
         listItem.appendChild(inputCheck);
         listItem.appendChild(taskLabel);
