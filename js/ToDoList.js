@@ -1,12 +1,23 @@
 import { Todoitem } from "./TodoItem .js";
 
-class ToDoList {
+class ToDoList { 
+
+   
+  // btnMedeum = document.getElementById("btn-medeum");
+  // btnHigh = document.getElementById("btn-high");
+  // btnAll = document.getElementById("btn-all");
+
+
   constructor() {
-    this.tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    this.tasks = JSON.parse(localStorage.getItem("tasks")) || []; 
+    this.lowTask= this.tasks.filter(task => task.priority === "Low");
+    this.highTask= this.tasks.filter(task => task.priority === "high");
+    this.medeumTask= this.tasks.filter(task => task.priority === "Medeum");  
     this.renderTasks();
   }
 
-  addTask(taskDescription, priority) {
+ 
+  addTask(taskDescription, priority) {  
     const value = taskDescription.value.trim();
     const newTask = new Todoitem(value, priority);
     this.tasks.push(newTask);
@@ -19,11 +30,94 @@ class ToDoList {
     this.tasks.splice(index, 1);
     this.saveIntoLocalStorage();
     this.renderTasks();
-  }
+  } 
+ 
+  
+  
+  
+ 
+  renderFilterTasks(filteredTasks) {
+    const ullist = document.getElementById("conteaner-list");
+    ullist.innerHTML = "";
+  
+    filteredTasks.forEach((task, index) => {
+      const listItem = document.createElement("li");
+      const inputCheck = document.createElement("input");
+      const taskLabel = document.createElement("label");
+      const iconRemove = document.createElement("span");
+      const iconEdit = document.createElement("span");
 
+      inputCheck.setAttribute("type", "checkbox");
+      taskLabel.innerHTML = task.task;
+      iconRemove.setAttribute("class", "icon-remove");
+      iconEdit.setAttribute("class", "icon-edit");
+      iconRemove.innerHTML = "&#128465";
+      iconEdit.innerHTML = "&#9998;";
+
+      ullist.appendChild(listItem);
+      listItem.appendChild(inputCheck);
+      listItem.appendChild(taskLabel);
+      listItem.appendChild(iconRemove);
+      listItem.appendChild(iconEdit);
+
+      inputCheck.addEventListener("click", () => {
+        this.tasks[index].completed = inputCheck.checked;
+        if (this.tasks[index].completed === true) {
+          taskLabel.className = "checked";
+        } else {
+          taskLabel.className = "unchecked";
+        }
+
+        this.saveIntoLocalStorage();
+      });
+
+      if (task.completed == true) {
+        taskLabel.className = "checked";
+      } else {
+        taskLabel.className = "unchecked";
+      }
+      inputCheck.checked = task.completed;
+
+      if (task.priority == "high") {
+        listItem.style.backgroundColor = "rgba(255, 0, 0, 0.2)";
+      } else if (task.priority == "Medeum") {
+        listItem.style.backgroundColor = "rgba(255, 165, 0, 0.2)";
+      } else {
+        listItem.style.backgroundColor = "rgba(0, 128, 0, 0.2)";
+      }
+       
+     
+     
+
+      iconEdit.addEventListener("click", () => {
+        const newTask = prompt("Edit your task", task.task);
+        if (newTask) {
+          this.tasks[index].task = newTask;
+          this.saveIntoLocalStorage();
+          this.renderTasks();
+        }
+      });
+      iconRemove.addEventListener("click", () => {
+        this.removeTask(index);
+      });
+    });
+  }
+  
   renderTasks() {
     const ullist = document.getElementById("conteaner-list");
     ullist.innerHTML = "";
+    
+    document.getElementById('btn-low').addEventListener("click", () => {
+      this.renderFilterTasks(this.lowTask); 
+     }); 
+
+     document.getElementById('btn-medeum').addEventListener("click", () => {
+      this.renderFilterTasks(this.medeumTask); 
+     });
+
+     document.getElementById('btn-High').addEventListener("click", () => {
+      this.renderFilterTasks(this.highTask); 
+     });
 
     this.tasks.forEach((task, index) => {
       const listItem = document.createElement("li");
@@ -70,6 +164,9 @@ class ToDoList {
       } else {
         listItem.style.backgroundColor = "rgba(0, 128, 0, 0.2)";
       }
+       
+     
+     
 
       iconEdit.addEventListener("click", () => {
         const newTask = prompt("Edit your task", task.task);
