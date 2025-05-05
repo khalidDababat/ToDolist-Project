@@ -8,14 +8,13 @@ class ToDoList {
       this.setFilter("Low");
     });
     document.getElementById("btn-High").addEventListener("click", () => {
-      this.setFilter("high");
+      this.setFilter("High");
     });
-
     document.getElementById("btn-medeum").addEventListener("click", () => {
       this.setFilter("Medeum");
     });
     document.getElementById("btn-all").addEventListener("click", () => {
-      this.setFilter("all");
+      this.setFilter("All");
     });
 
     this.renderTasks();
@@ -45,24 +44,7 @@ class ToDoList {
     const ullist = document.getElementById("conteaner-list");
     ullist.innerHTML = "";
 
-    var listFilterTasks = [];
-    if (this.filterTask == "Low") {
-      listFilterTasks = this.tasks.filter(
-        (task) => task.priority === this.filterTask
-      );
-    } else if (this.filterTask == "high") {
-      listFilterTasks = this.tasks.filter(
-        (task) => task.priority === this.filterTask
-      );
-    } else if (this.filterTask == "Medeum") {
-      listFilterTasks = this.tasks.filter(
-        (task) => task.priority === this.filterTask
-      );
-    } else {
-      listFilterTasks = this.tasks;
-    }
-
-    listFilterTasks.forEach((task, index) => {
+    this.tasks.forEach((task, index) => {
       const listItem = document.createElement("li");
       const inputCheck = document.createElement("input");
       const taskLabel = document.createElement("label");
@@ -76,6 +58,26 @@ class ToDoList {
       iconRemove.innerHTML = "&#128465";
       iconEdit.innerHTML = "&#9998;";
 
+      if (this.filterTask == "Low") {
+        if (task.priority != "Low") {
+          listItem.style.display = "none";
+        } else {
+          listItem.style.display = "block";
+        }
+      } else if (this.filterTask == "High") {
+        if (task.priority != "High") {
+          listItem.style.display = "none";
+        } else {
+          listItem.style.display = "block";
+        }
+      } else if (this.filterTask == "Medeum") {
+        if (task.priority != "Medeum") {
+          listItem.style.display = "none";
+        } else {
+          listItem.style.display = "block";
+        }
+      }
+
       ullist.appendChild(listItem);
       listItem.appendChild(inputCheck);
       listItem.appendChild(taskLabel);
@@ -83,8 +85,8 @@ class ToDoList {
       listItem.appendChild(iconEdit);
 
       inputCheck.addEventListener("click", () => {
-        listFilterTasks[index].completed = inputCheck.checked;
-        if (listFilterTasks[index].completed === true) {
+        this.tasks[index].completed = inputCheck.checked;
+        if (this.tasks[index].completed === true) {
           taskLabel.className = "checked";
         } else {
           taskLabel.className = "unchecked";
@@ -100,7 +102,7 @@ class ToDoList {
       }
       inputCheck.checked = task.completed;
 
-      if (task.priority == "high") {
+      if (task.priority == "High") {
         listItem.style.backgroundColor = "rgba(255, 0, 0, 0.2)";
       } else if (task.priority == "Medeum") {
         listItem.style.backgroundColor = "rgba(255, 165, 0, 0.2)";
@@ -111,7 +113,7 @@ class ToDoList {
       iconEdit.addEventListener("click", () => {
         const newTask = prompt("Edit your task", task.task);
         if (newTask) {
-          listFilterTasks[index].task = newTask;
+          this.tasks[index].task = newTask;
           this.saveIntoLocalStorage();
           this.renderTasks();
         }
