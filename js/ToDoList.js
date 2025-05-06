@@ -3,6 +3,20 @@ import { Todoitem } from "./TodoItem .js";
 class ToDoList {
   constructor() {
     this.tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    this.filterTask = "All";
+    document.getElementById("btn-low").addEventListener("click", () => {
+      this.setFilter("Low");
+    });
+    document.getElementById("btn-High").addEventListener("click", () => {
+      this.setFilter("High");
+    });
+    document.getElementById("btn-medeum").addEventListener("click", () => {
+      this.setFilter("Medeum");
+    });
+    document.getElementById("btn-all").addEventListener("click", () => {
+      this.setFilter("All");
+    });
+
     this.renderTasks();
   }
 
@@ -15,6 +29,11 @@ class ToDoList {
     taskDescription.value = "";
   }
 
+  setFilter(filterTask) {
+    this.filterTask = filterTask;
+    this.renderTasks();
+  }
+
   removeTask(index) {
     this.tasks.splice(index, 1);
     this.saveIntoLocalStorage();
@@ -24,8 +43,11 @@ class ToDoList {
   renderTasks() {
     const ullist = document.getElementById("conteaner-list");
     ullist.innerHTML = "";
+   
+    
+    this.tasks.forEach((task, index) => { 
 
-    this.tasks.forEach((task, index) => {
+      if (this.filterTask === "All" || this.filterTask === task.priority){
       const listItem = document.createElement("li");
       const inputCheck = document.createElement("input");
       const taskLabel = document.createElement("label");
@@ -37,13 +59,15 @@ class ToDoList {
       iconRemove.setAttribute("class", "icon-remove");
       iconEdit.setAttribute("class", "icon-edit");
       iconRemove.innerHTML = "&#128465";
-      iconEdit.innerHTML = "&#9998;";
+      iconEdit.innerHTML = "&#9998";
 
-      ullist.appendChild(listItem);
-      listItem.appendChild(inputCheck);
-      listItem.appendChild(taskLabel);
-      listItem.appendChild(iconRemove);
-      listItem.appendChild(iconEdit);
+       
+        ullist.appendChild(listItem);
+        listItem.appendChild(inputCheck);
+        listItem.appendChild(taskLabel);
+        listItem.appendChild(iconRemove);
+        listItem.appendChild(iconEdit);
+      
 
       inputCheck.addEventListener("click", () => {
         this.tasks[index].completed = inputCheck.checked;
@@ -63,7 +87,7 @@ class ToDoList {
       }
       inputCheck.checked = task.completed;
 
-      if (task.priority == "high") {
+      if (task.priority == "High") {
         listItem.style.backgroundColor = "rgba(255, 0, 0, 0.2)";
       } else if (task.priority == "Medeum") {
         listItem.style.backgroundColor = "rgba(255, 165, 0, 0.2)";
@@ -82,8 +106,9 @@ class ToDoList {
       iconRemove.addEventListener("click", () => {
         this.removeTask(index);
       });
-    });
-  }
+    }
+  });
+} 
 
   saveIntoLocalStorage() {
     const taskString = JSON.stringify(this.tasks);
