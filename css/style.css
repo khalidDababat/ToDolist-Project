@@ -147,6 +147,10 @@ body {
   font-size: 20px;
 }
 
+#btn-reset{
+  background-color: red;
+  font-weight: bold;
+}
 .checked {
   text-decoration: line-through;
 }

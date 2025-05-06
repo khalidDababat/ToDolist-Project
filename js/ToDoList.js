@@ -44,8 +44,6 @@ class ToDoList {
     const ullist = document.getElementById("conteaner-list");
     ullist.innerHTML = "";
 
-    const currentFilter = this.filterTask || "All"; // medume
-
     this.tasks.forEach((task, index) => {
       const listItem = document.createElement("li");
       const inputCheck = document.createElement("input");
@@ -60,15 +58,17 @@ class ToDoList {
       iconRemove.innerHTML = "&#128465";
       iconEdit.innerHTML = "&#9998";
 
-      if (task.priority !== currentFilter && currentFilter !== "All") {
-        return;
+      if (
+        this.filterTask === undefined ||
+        this.filterTask === "All" ||
+        this.filterTask === task.priority
+      ) {
+        ullist.appendChild(listItem);
+        listItem.appendChild(inputCheck);
+        listItem.appendChild(taskLabel);
+        listItem.appendChild(iconRemove);
+        listItem.appendChild(iconEdit);
       }
-
-      ullist.appendChild(listItem);
-      listItem.appendChild(inputCheck);
-      listItem.appendChild(taskLabel);
-      listItem.appendChild(iconRemove);
-      listItem.appendChild(iconEdit);
 
       inputCheck.addEventListener("click", () => {
         this.tasks[index].completed = inputCheck.checked;
