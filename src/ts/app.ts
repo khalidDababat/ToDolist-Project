@@ -1,8 +1,8 @@
 import { ToDoList } from "./ToDoList.js";
 
-const addBtn = document.querySelector(".input-text button");
-const descriptionTask = document.getElementById("task-input");
-const priorityTask = document.getElementsByName("prority");
+const addBtn = document.querySelector(".input-text button") as HTMLButtonElement;
+const descriptionTask = document.getElementById("task-input") as HTMLInputElement;
+const priorityTask = document.getElementsByName("prority") as NodeListOf<HTMLInputElement>;
 
 document.addEventListener("DOMContentLoaded", () => {
   const toDoList = new ToDoList();
@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
           toDoList.addTask(descriptionTask, priority);
           break;
         }
+      
       }
 
       toDoList.renderTasks();
