@@ -1,4 +1,4 @@
-import { Todoitem } from "./TodoItem.ts";
+import { Todoitem } from "./TodoItem.js";
 
 class ToDoList {
   private tasks: Todoitem[] = [];
