@@ -1,7 +1,7 @@
 class Todoitem {
-  task: string;
-  priority: string;
-  completed: boolean;
+  public task: string;
+  public priority: string;
+  public completed: boolean;
 
   constructor(task: string, priority: string = "Low", completed = false) {
     this.task = task;

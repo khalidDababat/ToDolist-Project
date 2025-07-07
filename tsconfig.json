@@ -1,22 +1,16 @@
 {
   "include": ["src"],
   "compilerOptions": {
-
     "target": "es2016" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
 
     /* Modules */
-   "module": "esnext"/* Specify what module code is generated. */,
-  
-   
+    "module": "esnext" /* Specify what module code is generated. */,
 
     // "checkJs": true,                                  /* Enable error reporting in type-checked JavaScript files. */
     "maxNodeModuleJsDepth": 1 /* Specify the maximum folder depth used for checking JavaScript files from 'node_modules'. Only applicable with 'allowJs'. */,
 
-
     // "outFile": "./",                                  /* Specify a file that bundles all outputs into one JavaScript file. If 'declaration' is true, also designates a file that bundles all .d.ts output. */
-    "outDir": "./build", 
-
- 
+    "outDir": "./build",
 
     "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
     "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
@@ -25,11 +19,11 @@
     "strict": true /* Enable all strict type-checking options. */,
     "noImplicitThis": true /* Enable error reporting when 'this' is given the type 'any'. */,
     "useUnknownInCatchVariables": true /* Default catch clause variables as 'unknown' instead of 'any'. */,
-                              /* Ensure 'use strict' is always emitted. */
+    /* Ensure 'use strict' is always emitted. */
     "noUnusedLocals": true /* Enable error reporting when local variables aren't read. */,
     "noUnusedParameters": true /* Raise an error when a function parameter isn't read. */,
     "noImplicitReturns": true /* Enable error reporting for codepaths that do not explicitly return in a function. */,
-    
+
     "allowUnreachableCode": true /* Disable error reporting for unreachable code. */,
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   }
