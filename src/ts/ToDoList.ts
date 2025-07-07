@@ -7,6 +7,7 @@ class ToDoList {
   constructor() {
     this.tasks = JSON.parse(localStorage.getItem("tasks")!) || [];
     this.filterTask = "All";
+
     document.getElementById("btn-low")?.addEventListener("click", () => {
       this.setFilter("Low");
     });
@@ -28,7 +29,6 @@ class ToDoList {
     if (value == "") return;
 
     const newTask = new Todoitem(value, priority);
-    console.log("task new ", newTask);
     this.tasks.push(newTask);
 
     this.saveIntoLocalStorage();
