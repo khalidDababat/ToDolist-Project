@@ -1,14 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Todo.module.css";
-import logo from "../assests/images/logo.jpg"; 
+import logo from "../assests/images/logo.jpg";
 
-import {Priority,Todo} from "../types"
-import { chownSync } from "fs";
+import { Priority, Todo } from "../types";
 
-const TodoList :React.FC = () => {
+const TodoList: React.FC = () => {
   const [task, setTask] = useState("");
-  const [priority, setPriority] =useState<Priority>("Low"); 
-  const [tasks, setTasks] =useState<Todo[]>([]);
+  const [priority, setPriority] = useState<Priority>("Low");
+  const [tasks, setTasks] = useState<Todo[]>(() => {
+    const savedTasks = localStorage.getItem("task");
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("task", JSON.stringify(tasks));
+  }, [tasks]);
+
+  const addTask = () => {
+    if (!task.trim()) {
+      alert("You should add a task!");
+    } else {
+      const newTask: Todo = {
+        task,
+        completed: false,
+        prority: priority,
+      };
+
+      setTasks([...tasks, newTask]);
+      setTask("");
+    }
+  };
 
   return (
     <>
@@ -43,7 +64,9 @@ const TodoList :React.FC = () => {
             onChange={(e) => setTask(e.target.value)}
             placeholder="Add a new Task"
           />
-          <button type="button">Add</button>
+          <button type="button" onClick={() => addTask()}>
+            Add
+          </button>
         </div>
 
         <div className={styles.categoryProrityBtn}>

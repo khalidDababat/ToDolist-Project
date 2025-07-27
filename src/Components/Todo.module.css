@@ -74,7 +74,15 @@
   background-color: #3c86ff;
   font-size: 17px;
   font-weight: bold;
-
+  
+  cursor: pointer;
   outline: none;
   border: none;
+}
+.categoryProrityBtn button:hover{
+  background-color: blue; 
+
+} 
+.input_task button:hover{
+   background-color: blue; 
 }
