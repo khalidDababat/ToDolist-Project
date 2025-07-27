@@ -74,15 +74,44 @@
   background-color: #3c86ff;
   font-size: 17px;
   font-weight: bold;
-  
+
   cursor: pointer;
   outline: none;
   border: none;
 }
-.categoryProrityBtn button:hover{
-  background-color: blue; 
+.categoryProrityBtn button:hover {
+  background-color: blue;
+}
+.input_task button:hover {
+  background-color: blue;
+}
 
-} 
-.input_task button:hover{
-   background-color: blue; 
+.conteaner_todo ul {
+  list-style: none;
+}
+
+.conteaner_todo ul li {
+  display: flex;
+  justify-content: space-between;
+
+  font-size: 17px;
+  font-weight: 800;
+
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.conteaner_todo ul li span {
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.High {
+  background-color: rgb(240, 154, 154);
+}
+.Low {
+  background-color: rgb(146, 245, 212);
+}
+.Medium {
+  background-color: rgb(238, 233, 144);
 }
