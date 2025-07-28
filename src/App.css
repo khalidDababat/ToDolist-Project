@@ -1,4 +1,8 @@
-
-body{
-    background-color: blue;
+body {
+  background-image: url("./assests/images/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 100vh;
+  margin: 0px;
 }
