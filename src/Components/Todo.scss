@@ -1,0 +1,129 @@
+$bg-todolist: rgb(230, 194, 194);
+$btn-color: #3c86ff;
+$btn-hover: blue;
+$input-bg: rgb(150, 153, 153);
+
+.conteaner_todo {
+  max-width: 540px;
+  background-color: $bg-todolist;
+  border-radius: 10px;
+  margin: 100px auto 20px;
+  padding: 40px 30px 70px;
+
+  h2 {
+    text-align: center;
+
+    img {
+      width: 30px;
+      height: 30px;
+      margin-top: 5px;
+      border-radius: 50px;
+    }
+  }
+
+  ul {
+    list-style: none;
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      font-size: 17px;
+      font-weight: 800;
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom: 10px;
+
+      label {
+        font-size: 19px;
+      }
+      .toggle {
+        text-decoration: line-through;
+      }
+
+      span {
+        margin-left: 5px;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.category_prority {
+  display: flex;
+  gap: 5px;
+
+  > div {
+    margin: auto 0;
+  }
+
+  p {
+    font-size: 17px;
+    font-weight: bold;
+  }
+}
+
+.input_task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $input-bg;
+  padding-left: 30px;
+  margin-bottom: 25px;
+  border-radius: 50px;
+
+  input {
+    flex: 1;
+    padding: 10px;
+    background: transparent;
+    font-weight: bold;
+    font-size: 17px;
+    border: none;
+    outline: none;
+  }
+
+  button {
+    padding: 16px 80px;
+    cursor: pointer;
+    background-color: $btn-color;
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 40px;
+    border: none;
+    outline: none;
+
+    &:hover {
+      background-color: $btn-hover;
+    }
+  }
+}
+
+.categoryProrityBtn {
+  display: flex;
+  gap: 25px;
+
+  button {
+    padding: 10px;
+    border-radius: 40px;
+    background-color: $btn-color;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    border: none;
+
+    &:hover {
+      background-color: $btn-hover;
+    }
+  }
+}
+
+.High {
+  background-color: rgb(240, 154, 154);
+}
+.Low {
+  background-color: rgb(146, 245, 212);
+}
+.Medium {
+  background-color: rgb(238, 233, 144);
+}

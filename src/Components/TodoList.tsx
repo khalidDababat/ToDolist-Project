@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Todo.css";
+import "./Todo.scss";
 import logo from "../assests/images/logo.jpg";
 import TodoItem from "./TodoItem";
 import { Priority, Todo } from "../types";
@@ -7,6 +7,7 @@ import { Priority, Todo } from "../types";
 const TodoList: React.FC = () => {
   const [task, setTask] = useState("");
   const [priority, setPriority] = useState<Priority>("Low");
+  const [fillter, setFillter] = useState<Priority | "All">("All");
   const [tasks, setTasks] = useState<Todo[]>(() => {
     const savedTasksInLocalStorge = localStorage.getItem("task");
     return savedTasksInLocalStorge ? JSON.parse(savedTasksInLocalStorge) : [];
@@ -18,6 +19,32 @@ const TodoList: React.FC = () => {
 
   const removeTask = (index: number) => {
     setTasks(tasks.filter((_, i) => i !== index));
+  };
+
+  const filterTasks = tasks.filter((task) => {
+    if (fillter === "All") return true;
+    return task.priority === fillter;
+  });
+
+  const canEdit = (index: number) => {
+    const newTask = prompt(
+      "Please Insert a new Task for Edit old task!",
+      tasks[index].task
+    );
+
+    if (newTask) {
+      const editedTask = tasks.map((t, i) => {
+        return i === index ? { ...t, task: newTask } : t;
+      });
+      setTasks(editedTask);
+    }
+  };
+
+  const toggleCompleted = (index: number) => {
+    const ubdateTasks = tasks.map((t, i) => {
+      return i === index ? { ...t, completed: !t.completed } : t;
+    });
+    setTasks(ubdateTasks);
   };
 
   const addTask = () => {
@@ -50,7 +77,7 @@ const TodoList: React.FC = () => {
               <input
                 type="radio"
                 name="prority"
-                checked={priority == "Low"}
+                checked={priority === "Low"}
                 id="low"
                 value="Low"
                 onChange={() => setPriority("Low")}
@@ -63,7 +90,7 @@ const TodoList: React.FC = () => {
                 name="prority"
                 id="high"
                 value="High"
-                checked={priority == "High"}
+                checked={priority === "High"}
                 onChange={() => setPriority("High")}
               />
               High
@@ -74,7 +101,7 @@ const TodoList: React.FC = () => {
                 name="prority"
                 id="Medeum"
                 value="Medium"
-                checked={priority == "Medium"}
+                checked={priority === "Medium"}
                 onChange={() => setPriority("Medium")}
               />
               Medeum
@@ -95,20 +122,30 @@ const TodoList: React.FC = () => {
         </div>
 
         <div className="categoryProrityBtn">
-          <button id="btn-all">All</button>
-          <button id="btn-low">Low</button>
-          <button id="btn-medeum">Medeum</button>
-          <button id="btn-High">High</button>
+          <button id="btn-all" onClick={() => setFillter("All")}>
+            All
+          </button>
+          <button id="btn-low" onClick={() => setFillter("Low")}>
+            Low
+          </button>
+          <button id="btn-medeum" onClick={() => setFillter("Medium")}>
+            Medeum
+          </button>
+          <button id="btn-High" onClick={() => setFillter("High")}>
+            High
+          </button>
         </div>
 
         <hr />
 
         <ul>
-          {tasks.map((task, index) => (
+          {filterTasks.map((task, index) => (
             <TodoItem
               key={index}
               task={task}
               onDelete={() => removeTask(index)}
+              onEdit={() => canEdit(index)}
+              toggleCompleted={() => toggleCompleted(index)}
             />
           ))}
         </ul>
