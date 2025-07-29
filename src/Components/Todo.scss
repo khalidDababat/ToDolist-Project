@@ -3,7 +3,7 @@ $btn-color: #3c86ff;
 $btn-hover: blue;
 $input-bg: rgb(150, 153, 153);
 
-.conteaner_todo {
+.container_todo {
   max-width: 540px;
   background-color: $bg-todolist;
   border-radius: 10px;
@@ -37,15 +37,27 @@ $input-bg: rgb(150, 153, 153);
         font-size: 19px;
       }
 
+      .complete_task {
+        text-decoration: line-through;
+      }
       span {
         margin-left: 5px;
         cursor: pointer;
       }
     }
+    .priority_high {
+      background-color: #f0a9a9;
+    }
+    .priority_low {
+      background-color: #92f5d4;
+    }
+    .priority_medium {
+      background-color: #eee990;
+    }
   }
 }
 
-.category_prority {
+.category_priority {
   display: flex;
   gap: 5px;
 
@@ -56,6 +68,7 @@ $input-bg: rgb(150, 153, 153);
   p {
     font-size: 17px;
     font-weight: bold;
+    display: inline;
   }
 }
 
@@ -95,7 +108,7 @@ $input-bg: rgb(150, 153, 153);
   }
 }
 
-.categoryPriortyBtn {
+.categoryPriorityBtn {
   display: flex;
   gap: 25px;
 

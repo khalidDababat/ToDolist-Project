@@ -16,27 +16,14 @@ const TodoItem: React.FC<TodoItemProps> = ({
 }) => {
   return (
     <Fragment>
-      <li
-        style={{
-          backgroundColor:
-            task.priority === "high"
-              ? "#f09a9a"
-              : task.priority === "low"
-              ? "#92f5d4"
-              : "#eee990",
-        }}
-      >
+      <li className={`priority_${task.priority}`}>
         <div>
           <input
             type="checkbox"
             checked={task.completed}
             onChange={toggleCompleted}
           />
-          <label
-            style={{
-              textDecoration: task.completed ? "line-through" : "",
-            }}
-          >
+          <label className={task.completed ? "complete_task" : ""}>
             {task.task}
           </label>
         </div>
