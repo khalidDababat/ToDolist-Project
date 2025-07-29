@@ -32,11 +32,7 @@ const TodoItem: React.FC<TodoItemProps> = ({
             checked={task.completed}
             onChange={toggleCompleted}
           />
-          <label
-            style={{
-              textDecoration: task.completed ? "line-through" : "",
-            }}
-          >
+          <label className={task.completed ? "complete_task" : ""}>
             {task.task}
           </label>
         </div>

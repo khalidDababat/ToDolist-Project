@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Todo.scss";
-import logo from "../assests/images/logo.jpg";
+import logo from "../assists/images/logo.jpg";
 import TodoItem from "./TodoItem";
 import { PriorityType, Todo } from "../types";
 
@@ -9,8 +9,8 @@ const TodoList: React.FC = () => {
   const [priority, setPriority] = useState<PriorityType>(PriorityType.low);
   const [filter, setFilter] = useState<PriorityType | "All">("All");
   const [tasks, setTasks] = useState<Todo[]>(() => {
-    const savedTasksInLocalStorge = localStorage.getItem("task");
-    return savedTasksInLocalStorge ? JSON.parse(savedTasksInLocalStorge) : [];
+    const savedTasksInLocalStorage = localStorage.getItem("task");
+    return savedTasksInLocalStorage ? JSON.parse(savedTasksInLocalStorage) : [];
   });
 
   useEffect(() => {
@@ -51,20 +51,20 @@ const TodoList: React.FC = () => {
   };
 
   const toggleCompleted = (index: number) => {
-    const ubdateTasks = tasks.map((t, i) => {
+    const updateTasks = tasks.map((t, i) => {
       return i === index ? { ...t, completed: !t.completed } : t;
     });
-    setTasks(ubdateTasks);
+    setTasks(updateTasks);
   };
 
   return (
     <>
-      <div className="conteaner_todo">
+      <div className="container_todo">
         <h2>
           To-Do List <img src={logo} alt="logoToDo" />
         </h2>
 
-        <div className="category_prority">
+        <div className="category_priority">
           <p>Task Priority:</p>
 
           <div>
@@ -73,7 +73,6 @@ const TodoList: React.FC = () => {
                 type="radio"
                 name="priority"
                 checked={priority === PriorityType.low}
-                id="low"
                 value={PriorityType.low}
                 onChange={() => setPriority(PriorityType.low)}
               />
@@ -82,8 +81,7 @@ const TodoList: React.FC = () => {
             <label>
               <input
                 type="radio"
-                name="prority"
-                id="high"
+                name="priority"
                 value={PriorityType.high}
                 checked={priority === PriorityType.high}
                 onChange={() => setPriority(PriorityType.high)}
@@ -93,13 +91,12 @@ const TodoList: React.FC = () => {
             <label>
               <input
                 type="radio"
-                name="prority"
-                id="Medeum"
+                name="priority"
                 value={PriorityType.medium}
                 checked={priority === PriorityType.medium}
                 onChange={() => setPriority(PriorityType.medium)}
               />
-              Medeum
+              Medium
             </label>
           </div>
         </div>
@@ -116,30 +113,26 @@ const TodoList: React.FC = () => {
           </button>
         </div>
 
-        <div className="categoryPriortyBtn">
+        <div className="categoryPriorityBtn">
           <button
-            id="btn-all"
             className={filter === "All" ? "active_filter" : ""}
             onClick={() => setFilter("All")}
           >
             All
           </button>
           <button
-            id="btn-low"
             className={filter === PriorityType.low ? "active_filter" : ""}
             onClick={() => setFilter(PriorityType.low)}
           >
             Low
           </button>
           <button
-            id="btn-medeum"
             className={filter === PriorityType.medium ? "active_filter" : ""}
             onClick={() => setFilter(PriorityType.medium)}
           >
-            Medeum
+            Medium
           </button>
           <button
-            id="btn-High"
             className={filter === PriorityType.high ? "active_filter" : ""}
             onClick={() => setFilter(PriorityType.high)}
           >
