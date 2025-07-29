@@ -36,9 +36,6 @@ $input-bg: rgb(150, 153, 153);
       label {
         font-size: 19px;
       }
-      .toggle {
-        text-decoration: line-through;
-      }
 
       span {
         margin-left: 5px;
@@ -98,7 +95,7 @@ $input-bg: rgb(150, 153, 153);
   }
 }
 
-.categoryProrityBtn {
+.categoryPriortyBtn {
   display: flex;
   gap: 25px;
 
@@ -116,14 +113,7 @@ $input-bg: rgb(150, 153, 153);
       background-color: $btn-hover;
     }
   }
-}
-
-.High {
-  background-color: rgb(240, 154, 154);
-}
-.Low {
-  background-color: rgb(146, 245, 212);
-}
-.Medium {
-  background-color: rgb(238, 233, 144);
+  .active_filter {
+    background-color: blue !important;
+  }
 }

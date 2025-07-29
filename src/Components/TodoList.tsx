@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import "./Todo.scss";
 import logo from "../assests/images/logo.jpg";
 import TodoItem from "./TodoItem";
-import { Priority, Todo } from "../types";
+import { PriorityType, Todo } from "../types";
 
 const TodoList: React.FC = () => {
   const [task, setTask] = useState("");
-  const [priority, setPriority] = useState<Priority>("Low");
-  const [fillter, setFillter] = useState<Priority | "All">("All");
+  const [priority, setPriority] = useState<PriorityType>(PriorityType.low);
+  const [filter, setFilter] = useState<PriorityType | "All">("All");
   const [tasks, setTasks] = useState<Todo[]>(() => {
     const savedTasksInLocalStorge = localStorage.getItem("task");
     return savedTasksInLocalStorge ? JSON.parse(savedTasksInLocalStorge) : [];
@@ -17,14 +17,24 @@ const TodoList: React.FC = () => {
     localStorage.setItem("task", JSON.stringify(tasks));
   }, [tasks]);
 
+  const addTask = () => {
+    if (!task.trim()) {
+      alert("You should add a task!");
+    } else {
+      const newTask: Todo = {
+        task,
+        completed: false,
+        priority: priority,
+      };
+
+      setTasks([...tasks, newTask]);
+      setTask("");
+    }
+  };
+
   const removeTask = (index: number) => {
     setTasks(tasks.filter((_, i) => i !== index));
   };
-
-  const filterTasks = tasks.filter((task) => {
-    if (fillter === "All") return true;
-    return task.priority === fillter;
-  });
 
   const canEdit = (index: number) => {
     const newTask = prompt(
@@ -47,21 +57,6 @@ const TodoList: React.FC = () => {
     setTasks(ubdateTasks);
   };
 
-  const addTask = () => {
-    if (!task.trim()) {
-      alert("You should add a task!");
-    } else {
-      const newTask: Todo = {
-        task,
-        completed: false,
-        priority: priority,
-      };
-
-      setTasks([...tasks, newTask]);
-      setTask("");
-    }
-  };
-
   return (
     <>
       <div className="conteaner_todo">
@@ -70,17 +65,17 @@ const TodoList: React.FC = () => {
         </h2>
 
         <div className="category_prority">
-          <p>task priority:</p>
+          <p>Task Priority:</p>
 
           <div>
             <label>
               <input
                 type="radio"
-                name="prority"
-                checked={priority === "Low"}
+                name="priority"
+                checked={priority === PriorityType.low}
                 id="low"
-                value="Low"
-                onChange={() => setPriority("Low")}
+                value={PriorityType.low}
+                onChange={() => setPriority(PriorityType.low)}
               />
               LOW
             </label>
@@ -89,9 +84,9 @@ const TodoList: React.FC = () => {
                 type="radio"
                 name="prority"
                 id="high"
-                value="High"
-                checked={priority === "High"}
-                onChange={() => setPriority("High")}
+                value={PriorityType.high}
+                checked={priority === PriorityType.high}
+                onChange={() => setPriority(PriorityType.high)}
               />
               High
             </label>
@@ -100,9 +95,9 @@ const TodoList: React.FC = () => {
                 type="radio"
                 name="prority"
                 id="Medeum"
-                value="Medium"
-                checked={priority === "Medium"}
-                onChange={() => setPriority("Medium")}
+                value={PriorityType.medium}
+                checked={priority === PriorityType.medium}
+                onChange={() => setPriority(PriorityType.medium)}
               />
               Medeum
             </label>
@@ -121,17 +116,33 @@ const TodoList: React.FC = () => {
           </button>
         </div>
 
-        <div className="categoryProrityBtn">
-          <button id="btn-all" onClick={() => setFillter("All")}>
+        <div className="categoryPriortyBtn">
+          <button
+            id="btn-all"
+            className={filter === "All" ? "active_filter" : ""}
+            onClick={() => setFilter("All")}
+          >
             All
           </button>
-          <button id="btn-low" onClick={() => setFillter("Low")}>
+          <button
+            id="btn-low"
+            className={filter === PriorityType.low ? "active_filter" : ""}
+            onClick={() => setFilter(PriorityType.low)}
+          >
             Low
           </button>
-          <button id="btn-medeum" onClick={() => setFillter("Medium")}>
+          <button
+            id="btn-medeum"
+            className={filter === PriorityType.medium ? "active_filter" : ""}
+            onClick={() => setFilter(PriorityType.medium)}
+          >
             Medeum
           </button>
-          <button id="btn-High" onClick={() => setFillter("High")}>
+          <button
+            id="btn-High"
+            className={filter === PriorityType.high ? "active_filter" : ""}
+            onClick={() => setFilter(PriorityType.high)}
+          >
             High
           </button>
         </div>
@@ -139,15 +150,17 @@ const TodoList: React.FC = () => {
         <hr />
 
         <ul>
-          {filterTasks.map((task, index) => (
-            <TodoItem
-              key={index}
-              task={task}
-              onDelete={() => removeTask(index)}
-              onEdit={() => canEdit(index)}
-              toggleCompleted={() => toggleCompleted(index)}
-            />
-          ))}
+          {tasks
+            .filter((task) => filter === "All" || filter === task.priority)
+            .map((task, index) => (
+              <TodoItem
+                key={index}
+                task={task}
+                onDelete={() => removeTask(index)}
+                onEdit={() => canEdit(index)}
+                toggleCompleted={() => toggleCompleted(index)}
+              />
+            ))}
         </ul>
       </div>
     </>
