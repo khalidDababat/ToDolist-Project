@@ -14,25 +14,31 @@ const TodoItem: React.FC<TodoItemProps> = ({
   onEdit,
   toggleCompleted,
 }) => {
-  const prorityClass =
-    task.priority === "High"
-      ? "High"
-      : task.priority === "Low"
-      ? "Low"
-      : "Medium";
-
-  const completedClass = task.completed === true ? "toggle" : "";
-
   return (
     <Fragment>
-      <li className={`${prorityClass} `}>
+      <li
+        style={{
+          backgroundColor:
+            task.priority === "high"
+              ? "#f09a9a"
+              : task.priority === "low"
+              ? "#92f5d4"
+              : "#eee990",
+        }}
+      >
         <div>
           <input
             type="checkbox"
             checked={task.completed}
             onChange={toggleCompleted}
           />
-          <label className={`${completedClass}`}>{task.task}</label>
+          <label
+            style={{
+              textDecoration: task.completed ? "line-through" : "",
+            }}
+          >
+            {task.task}
+          </label>
         </div>
 
         <div>
