@@ -1,60 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Todo.scss";
 import logo from "../assists/images/logo.jpg";
 import TodoItem from "./TodoItem";
 import { PriorityType, Todo } from "../types";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../Store/store";
+import { v4 as uuid } from "uuid";
+import { saveTask } from "../Features/TodoSlice";
 
 const TodoList: React.FC = () => {
   const [task, setTask] = useState("");
   const [priority, setPriority] = useState<PriorityType>(PriorityType.low);
-  const [filter, setFilter] = useState<PriorityType | "All">("All");
-  const [tasks, setTasks] = useState<Todo[]>(() => {
-    const savedTasksInLocalStorage = localStorage.getItem("task");
-    return savedTasksInLocalStorage ? JSON.parse(savedTasksInLocalStorage) : [];
-  });
-
-  useEffect(() => {
-    localStorage.setItem("task", JSON.stringify(tasks));
-  }, [tasks]);
+  const [filter, setFilter] = useState("All");
+  const tasks = useSelector((state: RootState) => state.todos.todos);
+  const dispatch = useDispatch();
 
   const addTask = () => {
     if (!task.trim()) {
       alert("You should add a task!");
     } else {
       const newTask: Todo = {
-        task,
-        completed: false,
+        id: uuid(),
+        task: task,
         priority: priority,
+        completed: false,
       };
-
-      setTasks([...tasks, newTask]);
+      dispatch(saveTask(newTask));
       setTask("");
     }
-  };
-
-  const removeTask = (index: number) => {
-    setTasks(tasks.filter((_, i) => i !== index));
-  };
-
-  const canEdit = (index: number) => {
-    const newTask = prompt(
-      "Please Insert a new Task for Edit old task!",
-      tasks[index].task
-    );
-
-    if (newTask) {
-      const editedTask = tasks.map((t, i) => {
-        return i === index ? { ...t, task: newTask } : t;
-      });
-      setTasks(editedTask);
-    }
-  };
-
-  const toggleCompleted = (index: number) => {
-    const updateTasks = tasks.map((t, i) => {
-      return i === index ? { ...t, completed: !t.completed } : t;
-    });
-    setTasks(updateTasks);
   };
 
   return (
@@ -139,20 +112,12 @@ const TodoList: React.FC = () => {
             High
           </button>
         </div>
-
         <hr />
-
         <ul>
           {tasks
-            .filter((task) => filter === "All" || filter === task.priority)
-            .map((task, index) => (
-              <TodoItem
-                key={index}
-                task={task}
-                onDelete={() => removeTask(index)}
-                onEdit={() => canEdit(index)}
-                toggleCompleted={() => toggleCompleted(index)}
-              />
+            .filter((task) => filter === "All" || task.priority === filter)
+            .map((todo) => (
+              <TodoItem key={todo.id} task={todo} />
             ))}
         </ul>
       </div>
