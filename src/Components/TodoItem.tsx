@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Todo } from "../types";
 import { removeTask, 
          toggleCompleted, 
-         editTask } from "../Features/TodoSlice";
+         editTask } from "../Store/toDo/TodoSlice";
 import { useDispatch } from "react-redux";
 
 type TodoItemProps = {

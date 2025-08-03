@@ -6,7 +6,7 @@ import { PriorityType, Todo } from "../types";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../Store/store";
 import { v4 as uuid } from "uuid";
-import { saveTask } from "../Features/TodoSlice";
+import { saveTask } from "../Store/toDo/TodoSlice";
 
 const TodoList: React.FC = () => {
   const [task, setTask] = useState("");
