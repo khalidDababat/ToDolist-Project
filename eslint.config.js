@@ -4,15 +4,23 @@ import tseslint from "typescript-eslint";
 import pluginReact from "eslint-plugin-react";
 import { defineConfig } from "eslint/config";
 import ts from "typescript";
+import prettier from "eslint-config-prettier";
 
 export default defineConfig([
   {
     files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
     plugins: { js, ts },
-    extends: ["js/recommended"],
+
     languageOptions: {
       globals: globals.browser,
     },
+    extends: [
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:@typescript-eslint/recommended",
+      "prettier",
+      prettier,
+    ],
 
     settings: {
       react: {

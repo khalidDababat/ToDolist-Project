@@ -1,8 +1,6 @@
 import React, { Fragment } from "react";
 import { Todo } from "../types";
-import { removeTask, 
-         toggleCompleted, 
-         editTask } from "../Store/toDo/TodoSlice";
+import { removeTask, toggleCompleted, editTask } from "../Store/toDo/TodoSlice";
 import { useDispatch } from "react-redux";
 
 type TodoItemProps = {
@@ -22,7 +20,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ task }) => {
   const handelEdit = () => {
     const newTask = prompt(
       "Please Insert a new Task for Edit old task!",
-      task.task
+      task.task,
     );
     if (newTask) {
       dispatch(editTask({ ...task, task: newTask }));
