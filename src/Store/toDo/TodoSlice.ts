@@ -20,19 +20,16 @@ export const TodoSlice = createSlice({
     },
 
     toggleCompleted: (state, action: PayloadAction<string>) => {
-      const todo = state.todos.find((todo) => todo.id === action.payload);
-      if (todo) {
-        todo.completed = !todo.completed;
-      }
+      state.todos = state.todos.map((todo) =>
+        todo.id === action.payload
+          ? { ...todo, completed: !todo.completed }
+          : todo,
+      );
     },
     editTask: (state, action: PayloadAction<Todo>) => {
-      const index = state.todos.findIndex(
-        (todo) => todo.id === action.payload.id,
+      state.todos = state.todos.map((todo) =>
+        todo.id === action.payload.id ? { ...todo, ...action.payload } : todo,
       );
-
-      if (index !== -1) {
-        state.todos[index] = action.payload;
-      }
     },
   },
 });

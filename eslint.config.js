@@ -9,7 +9,11 @@ import prettier from "eslint-config-prettier";
 export default defineConfig([
   {
     files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
-    plugins: { js, ts },
+    plugins: {
+      "@eslint/js": js,
+      "@typescript-eslint": tseslint.plugin,
+      react: pluginReact,
+    },
 
     languageOptions: {
       globals: globals.browser,
