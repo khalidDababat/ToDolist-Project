@@ -5,6 +5,7 @@ export enum PriorityType {
 }
 
 export type Todo = {
+  id: string;
   task: string;
   completed: boolean;
   priority: PriorityType;
