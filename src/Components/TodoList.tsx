@@ -15,6 +15,7 @@ const TodoList: React.FC = () => {
   const tasks = useSelector((state: RootState) => state.todos.todos);
   const dispatch = useDispatch();
 
+
   const addTask = () => {
     if (!task.trim()) {
       alert("You should add a task!");
@@ -29,6 +30,7 @@ const TodoList: React.FC = () => {
       setTask("");
     }
   };
+
 
   return (
     <>

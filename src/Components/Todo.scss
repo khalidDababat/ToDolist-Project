@@ -37,6 +37,9 @@ $input-bg: rgb(150, 153, 153);
         font-size: 19px;
       }
 
+      .complete_task {
+        text-decoration: line-through;
+      }
       span {
         margin-left: 5px;
         cursor: pointer;
@@ -51,9 +54,7 @@ $input-bg: rgb(150, 153, 153);
     .priority_medium {
       background-color: #eee990;
     }
-    .complete_task {
-      text-decoration: line-through;
-    }
+
   }
 }
 
